@@ -1,7 +1,10 @@
 package com.example.animes
 
 import android.app.Application
+import com.example.animes.di.dataModule
+import com.example.animes.di.domainModule
 import com.example.animes.di.networkModule
+import com.example.animes.di.presentationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -13,7 +16,10 @@ class AnimeApplication: Application() {
         startKoin {
             modules(
                 listOf(
-                    networkModule
+                    networkModule,
+                    dataModule,
+                    domainModule,
+                    presentationModule
                 )
             )
             androidLogger()
