@@ -14,9 +14,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
-fun Home(navigateToDetails: (id: String) -> Unit){
+fun Home(
+    uiState: HomeUiState,
+    navigateToDetails: (id: String) -> Unit
+){
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -24,9 +28,12 @@ fun Home(navigateToDetails: (id: String) -> Unit){
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(
-            modifier = Modifier.size(20.dp),
-            text = "Home")
+        uiState.topAnimes?.data?.forEach { item ->
+            Text(
+                text = item.title,
+                fontSize = 13.sp
+            )
+        }
         Button(
             onClick = { navigateToDetails("1") }) {
             Text(text = "Details")

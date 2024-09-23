@@ -7,7 +7,7 @@ import com.example.animes.data.mapper.TopAnimesMapper
 import com.example.animes.data.repository.TopAnimeListRepository
 import com.example.animes.data.repository.TopAnimeListRepositoryImpl
 import com.example.animes.domain.usecase.getTopAnimesUseCase
-import com.example.animes.presentation.TopAnimeViewModel
+import com.example.animes.presentation.home.HomeViewModel
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -16,6 +16,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModelOf
 
 val networkModule = module {
     single<Gson> { GsonBuilder().create() }
@@ -55,9 +56,5 @@ val domainModule = module {
 }
 
 val presentationModule = module{
-    viewModel {
-        TopAnimeViewModel(
-            getTopAnimesUseCase = get()
-        )
-    }
+    viewModelOf(::HomeViewModel)
 }
