@@ -69,8 +69,12 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.androidx.navigation.compose)
+    // Material Icons - extensão
+    implementation(libs.androidx.material.icons.extended)
 
-
+    // DataStore
+    implementation(libs.androidx.datastore.preferences)
+    
     // Koin
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
