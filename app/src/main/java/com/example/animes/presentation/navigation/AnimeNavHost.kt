@@ -4,11 +4,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navOptions
 import androidx.navigation.navigation
 import com.example.animes.domain.model.ItemsNavigateRoute
 import com.example.animes.domain.model.UserPreferences
@@ -36,9 +39,14 @@ fun AnimeNavHost(navController: NavHostController, userPreferences: UserPreferen
             onNavigateToHome = { navController.navigate(route = InitialRoute) })
         initial(
             userPreferences = userPreferences,
-            onNavigateToLogin = { navController.navigate(route = LoginRoute) })
+            onNavigateToLogin = {navController.navigate(route = LoginRoute){
+                popUpTo(navController.graph.startDestinationId){ //Limpa toda a pilha de telas, inclusive a tela de settings
+                    inclusive = true
+                }
+            } })
     }
 }
+
 
 @Serializable
 object LoginRoute
@@ -66,8 +74,8 @@ object InitialRoute
 //OBS: Necessário ter um navController interno. Não é possivel utilizar um NavController para mais de um navHost
 fun NavGraphBuilder.initial(userPreferences: UserPreferences, onNavigateToLogin: () -> Unit) {
     composable<InitialRoute> {
-        val navController = rememberNavController()
 
+        val navController = rememberNavController()
         Column(Modifier.fillMaxSize()) {
             NavHost(
                 navController = navController,
