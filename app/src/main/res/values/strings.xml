@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AnimeS</string>
+    <string name="email_icon">field email</string>
+    <string name="password_icon">field password</string>
+    <string name="button_signUp">Register</string>
+    <string name="button_signIn">Confirm</string>
+    <string name="button_exit_account">Exit account</string>
 </resources>
