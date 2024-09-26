@@ -1,15 +1,20 @@
 package com.example.animes.presentation.details
 
-import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
+import kotlinx.serialization.Serializable
 
-const val DETAILS = "details"
+data class Detail(
+    val id: String
+)
+
+@Serializable
+    data class DetailsRoute(val id: String)
 
 fun NavGraphBuilder.details() {
-    composable("$DETAILS/{id}") { backStackEntry ->
-        backStackEntry.arguments?.getString("id")?.let { id ->
-            Details(id)
-        } ?: LaunchedEffect(null) { }
+    composable<DetailsRoute> { backStackEntry ->
+        val route: DetailsRoute = backStackEntry.toRoute()
+         Details(route.id)
     }
 }

@@ -24,9 +24,9 @@ class HomeViewModel(
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
 
-    init {
-        getTopAnimes()
-    }
+//    init {
+//        getTopAnimes()
+//    }
 
     private fun getTopAnimes(
         type: String? = "",

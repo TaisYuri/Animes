@@ -15,11 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.animes.presentation.details.Detail
 
 @Composable
 fun Home(
     uiState: HomeUiState,
-    navigateToDetails: (id: String) -> Unit
+    navigateToDetails: (Detail) -> Unit
 ){
     Column(
         modifier = Modifier
@@ -28,14 +29,15 @@ fun Home(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        if(!uiState.topAnimes?.data.isNullOrEmpty()){
         uiState.topAnimes?.data?.forEach { item ->
             Text(
                 text = item.title,
                 fontSize = 13.sp
             )
-        }
+        }}
         Button(
-            onClick = { navigateToDetails("1") }) {
+            onClick = { navigateToDetails(Detail(id = "1")) }) {
             Text(text = "Details")
         }
     }

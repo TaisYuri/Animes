@@ -4,14 +4,22 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.example.animes.presentation.navigation.HOME_GRAPH
-import com.example.animes.presentation.settings.SETTINGS
+import kotlinx.serialization.Serializable
+
+interface ItemsNavigateRoute {
+    @Serializable
+    object HomeGraph : ItemsNavigateRoute
+
+    @Serializable
+    object SettingsRoute : ItemsNavigateRoute
+}
 
 sealed class ItemsNavigate(
     val title: String,
     val icon: ImageVector,
-    val route: String
+    val route: ItemsNavigateRoute
 ) {
-    data object Home : ItemsNavigate("Home", Icons.Filled.Home, HOME_GRAPH)
-    data object Settings : ItemsNavigate("Settings", Icons.Filled.Settings, SETTINGS)
+    data object Home : ItemsNavigate("Home", Icons.Filled.Home, ItemsNavigateRoute.HomeGraph)
+    data object Settings :
+        ItemsNavigate("Settings", Icons.Filled.Settings, ItemsNavigateRoute.SettingsRoute)
 }

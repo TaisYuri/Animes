@@ -27,7 +27,7 @@ fun BottomNavigate(navController: NavController) {
         actions = {
             items.forEach { item ->
                 NavigationBarItem(
-                    selected = currentDestination == item.route,
+                    selected = currentDestination == item.route.toString(),
                     onClick = {
                         navController.navigate(
                             item.route,
