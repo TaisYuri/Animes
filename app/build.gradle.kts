@@ -2,7 +2,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-parcelize")
-
+    id("com.google.gms.google-services")
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 android {
@@ -72,9 +73,12 @@ dependencies {
     // Material Icons - extensão
     implementation(libs.androidx.material.icons.extended)
 
+    //SERIALIZATION
+    implementation(libs.jetbrains.kotlinx.serialization.json)
+
     // DataStore
     implementation(libs.androidx.datastore.preferences)
-    
+
     // Koin
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
@@ -91,5 +95,10 @@ dependencies {
 
     //COIL  - ASYNCIMAGE
     implementation(libs.coil)
+
+    // FIREBASE
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
 
 }

@@ -3,6 +3,7 @@ package com.example.animes
 import android.app.Application
 import com.example.animes.di.dataModule
 import com.example.animes.di.domainModule
+import com.example.animes.di.firebaseModule
 import com.example.animes.di.networkModule
 import com.example.animes.di.presentationModule
 import com.example.animes.di.storageModule
@@ -19,6 +20,7 @@ class AnimeApplication: Application() {
                 listOf(
                     networkModule,
                     storageModule,
+                    firebaseModule,
                     dataModule,
                     domainModule,
                     presentationModule
