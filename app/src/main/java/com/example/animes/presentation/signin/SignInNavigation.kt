@@ -14,20 +14,12 @@ import org.koin.compose.viewmodel.koinViewModel
 object SignInRoute
 
 fun NavGraphBuilder.signIn(
-    navigateToHome: () -> Unit,
     navigateToSignUp: () -> Unit,
 ) {
     composable<SignInRoute> {
         val viewModel = koinViewModel<SignInViewModel>()
         val uiState by viewModel.uiState.collectAsState(initial = SignInUiState())
         val scope = rememberCoroutineScope()
-        val isAuthenticated = viewModel.isAuthenticated.collectAsState(initial = false).value
-
-        LaunchedEffect(isAuthenticated) {
-            if (isAuthenticated) {
-                navigateToHome()
-            }
-        }
 
         SignIn(
             uiState = uiState,

@@ -13,7 +13,6 @@ fun NavGraphBuilder.settings(userPreferences: UserPreferences, navigateToSignIn:
         Settings(userPreferences = userPreferences,
             onExitAccount = {
                 viewModel.signOut()
-                navigateToSignIn()
             })
     }
 }

@@ -35,8 +35,7 @@ fun BottomNavigate(navController: NavController) {
                                 launchSingleTop =
                                     true  // Não permite abrir mais uma instancia da mesma tela visivel
                                 // popUpTo(navController.graph.id) //remove sempre todas as telas anteriores
-                                popUpTo(navController.graph.startDestinationId) //remove da pilha todas as telas anteriores navegando para a  inicial
-
+                                //popUpTo(navController.graph.startDestinationId) //remove da pilha todas as telas anteriores navegando para a  inicial
                             }
                         )
 
