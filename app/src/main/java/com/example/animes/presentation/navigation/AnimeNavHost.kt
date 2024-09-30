@@ -25,6 +25,8 @@ import com.example.animes.presentation.signin.SignInRoute
 import com.example.animes.presentation.signin.signIn
 import com.example.animes.presentation.signup.SignUpRoute
 import com.example.animes.presentation.signup.signUp
+import com.example.animes.presentation.splashscreen.SplashScreenRoute
+import com.example.animes.presentation.splashscreen.splashScreen
 import kotlinx.serialization.Serializable
 
 
@@ -32,18 +34,21 @@ import kotlinx.serialization.Serializable
 fun AnimeNavHost(navController: NavHostController, userPreferences: UserPreferences) {
     NavHost(
         navController = navController,
-        startDestination = LoginRoute,
+        startDestination = SplashScreenRoute,
     ) {
+        splashScreen()
         loginGraph(
             onNavigateToSignUp = { navController.navigate(route = SignUpRoute) },
             onNavigateToHome = { navController.navigate(route = InitialRoute) })
         initial(
             userPreferences = userPreferences,
-            onNavigateToLogin = {navController.navigate(route = LoginRoute){
-                popUpTo(navController.graph.startDestinationId){ //Limpa toda a pilha de telas, inclusive a tela de settings
-                    inclusive = true
+            onNavigateToLogin = {  // Não está ativo. Ficará como exemplo de popUpTo
+                navController.navigate(route = LoginRoute) {
+                    popUpTo(navController.graph.startDestinationId) { //Limpa toda a pilha de telas, inclusive a tela de settings
+                        inclusive = true
+                    }
                 }
-            } })
+            })
     }
 }
 
@@ -58,7 +63,6 @@ fun NavGraphBuilder.loginGraph(
 ) {
     navigation<LoginRoute>(startDestination = SignInRoute) {
         signIn(
-            navigateToHome = { onNavigateToHome() },
             navigateToSignUp = { onNavigateToSignUp() }
         )
         signUp(navigateToHome = { onNavigateToHome() })
