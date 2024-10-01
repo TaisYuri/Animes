@@ -83,7 +83,7 @@ fun LayoutsScreen() {
             Layouts.List -> {
                 LazyColumn {
                     items(listStrs) {
-                        Cards(it)
+                        CardsLayouts(it)
                     }
                 }
             }
@@ -91,7 +91,7 @@ fun LayoutsScreen() {
             Layouts.Grid -> {
                 LazyVerticalGrid(columns = GridCells.Fixed(2)) {
                     items(listStrs) {
-                        Cards(it)
+                        CardsLayouts(it)
                     }
                 }
             }
@@ -99,21 +99,21 @@ fun LayoutsScreen() {
             Layouts.Staggered -> {
                 LazyVerticalStaggeredGrid(columns = StaggeredGridCells.Fixed(2)) {
                     items(listStrs) {
-                        Cards(it)
+                        CardsLayouts(it)
                     }
                 }
             }
         }
         LazyVerticalGrid(columns = GridCells.Fixed(2)) {
             items(listStrs) {
-                Cards(it)
+                CardsLayouts(it)
             }
         }
     }
 }
 
 @Composable
-fun Cards(title: String) {
+fun CardsLayouts(title: String) {
     Box(modifier = Modifier.padding(12.dp)) {
         Card(
             border = BorderStroke(1.dp, Color.Black)
