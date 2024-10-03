@@ -6,6 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.animes.domain.model.TopAnimeList
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -50,4 +51,11 @@ class HomeViewModel(
         }
     }
 
+    fun onRefresh(){
+        _uiState.update { it.copy(isRefreshing = true) }
+        viewModelScope.launch {
+            delay(5000)
+            _uiState.update { it.copy(isRefreshing = false) }
+        }
+    }
 }
