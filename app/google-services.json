@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "904568918962",
+    "project_id": "animes-137a4",
+    "storage_bucket": "animes-137a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904568918962:android:e67ce787f4f783b9734aab",
+        "android_client_info": {
+          "package_name": "com.example.animes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHaqLm843w_PCrjtx9lQmfOka3WZrCZ7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
