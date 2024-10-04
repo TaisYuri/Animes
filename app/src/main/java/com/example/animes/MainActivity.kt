@@ -10,8 +10,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import com.example.animes.domain.model.AppState
 import com.example.animes.domain.model.UserPreferences
-import com.example.animes.presentation.AppState
 import com.example.animes.presentation.UserViewModel
 import com.example.animes.presentation.navigation.AnimeNavHost
 import com.example.animes.presentation.navigation.InitialRoute

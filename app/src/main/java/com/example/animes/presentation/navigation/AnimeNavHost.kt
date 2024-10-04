@@ -87,7 +87,12 @@ fun NavGraphBuilder.initial(userPreferences: UserPreferences, onNavigateToLogin:
                 Modifier.weight(1f)
             ) {
                 homeGraph(onNavigateToDetails = { detail ->
-                    navController.navigate(DetailsRoute(detail.id))
+                    navController.navigate(DetailsRoute(
+                        id = detail.id,
+                        title = detail.title,
+                        image = detail.image,
+                        description = detail.description
+                    ))
                 })
                 settings(
                     userPreferences = userPreferences,
