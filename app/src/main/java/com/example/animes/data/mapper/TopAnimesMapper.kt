@@ -1,11 +1,15 @@
 package com.example.animes.data.mapper
 
+import com.example.animes.data.model.AiredResponse
+import com.example.animes.data.model.GenresResponse
 import com.example.animes.data.model.ImageJpgResponse
 import com.example.animes.data.model.ImagesResponse
 import com.example.animes.data.model.TopAnimeDataResponse
 import com.example.animes.data.model.TopAnimeListResponse
 import com.example.animes.data.model.TopAnimePaginationResponse
 import com.example.animes.data.model.TrailerResponse
+import com.example.animes.domain.model.Aired
+import com.example.animes.domain.model.Genres
 import com.example.animes.domain.model.ImageJpg
 import com.example.animes.domain.model.Images
 import com.example.animes.domain.model.TopAnimeData
@@ -31,7 +35,14 @@ private fun TopAnimeDataResponse.toDomain() =
         title = title.orEmpty(),
         type = type.orEmpty(),
         source = source.orEmpty(),
-        episodes = episodes.orEmpty()
+        episodes = episodes.orEmpty(),
+        status = status.orEmpty(),
+        aired = aired?.toDomain(),
+        duration = duration.orEmpty(),
+        score = score,
+        synopsis = synopsis.orEmpty(),
+        year = year.orEmpty(),
+        genres = genres?.map { it.toDomain() },
     )
 
 private fun TopAnimePaginationResponse.toDomain() =
@@ -54,4 +65,18 @@ private fun TrailerResponse.toDomain() =
     Trailer(
         youtubeId = youtubeId.orEmpty(),
         url = url.orEmpty()
+    )
+
+private fun AiredResponse.toDomain() =
+    Aired(
+        from = from.orEmpty(),
+        to = to.orEmpty()
+    )
+
+private fun GenresResponse.toDomain() =
+    Genres(
+        malId = malId.orEmpty(),
+        type = type.orEmpty(),
+        name = name.orEmpty()
+
     )
