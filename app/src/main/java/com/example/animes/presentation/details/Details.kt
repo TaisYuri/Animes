@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun Details(id: String){
+fun Details(info: DetailsRoute){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -24,7 +24,8 @@ fun Details(id: String){
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(
-            text = "Details - $id", fontSize = 20.sp)
+        Text(text = "Details - ${info.id}", fontSize = 20.sp)
+        Text(text = "Title - ${info.title}", fontSize = 20.sp)
+        Text(text = "imagem - ${info.image}", fontSize = 20.sp)
     }
 }

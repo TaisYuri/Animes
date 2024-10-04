@@ -9,7 +9,6 @@ import androidx.navigation.compose.composable
 import com.example.animes.presentation.details.Detail
 import kotlinx.serialization.Serializable
 import org.koin.compose.viewmodel.koinViewModel
-import org.koin.core.annotation.KoinExperimentalAPI
 
 @Serializable
 object HomeRoute

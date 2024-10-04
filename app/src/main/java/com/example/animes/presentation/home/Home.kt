@@ -1,10 +1,17 @@
 package com.example.animes.presentation.home
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -14,7 +21,14 @@ import androidx.compose.material3.pulltorefresh.PullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.pulltorefresh.pullToRefresh
+import androidx.compose.runtime.remember
+import com.example.animes.domain.model.TopAnimeData
 import com.example.animes.presentation.components.Cards
 import com.example.animes.presentation.components.PullToRefreshLazyColumn
 import com.example.animes.presentation.details.Detail
@@ -32,43 +46,91 @@ fun Home(
 
     Scaffold(
         modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Red),
+            .fillMaxSize(),
         topBar = { TopAppBarNavigation() }
     ) { innerPadding ->
-        if (!uiState.topAnimes?.data.isNullOrEmpty()) {
-            uiState.topAnimes?.data?.forEach { item ->
-                Text(
-                    text = item.title,
-                    fontSize = 13.sp
-                )
-            }
-        }
         Column(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.secondary)
-        ) {
-            Box(modifier = Modifier.weight(1f)) {
-                PullToRefreshLazyColumn(
-                    itemsList = test,
+                .pullToRefresh(
+                    state = stateRefreshState,
                     isRefreshing = isRefreshing,
                     onRefresh = onRefresh,
-                    content = { Cards(it) },
-                    state = stateRefreshState
                 )
-            }
-            Button(
-                onClick = { navigateToDetails(Detail(id = "1")) }) {
-                Text(text = "Details")
-            }
-            Button(onClick = {})
-                { Text(text = isRefreshing.toString()) }
+        ) {
+            if (uiState.topAnimes?.data?.isNotEmpty() == true) {
+                LazyColumn (
+                    modifier =Modifier
+                        .weight(1f)
+                        .background(Color.Red)
+                ) {
+                    item {
+                        Column(Modifier.padding(8.dp)) {
+                            Text(
+                                text = "Top 10 Animes",
+                                style = MaterialTheme.typography.titleSmall,
+                                color = MaterialTheme.colorScheme.primary,
+                            )
+                            LazyRow(
+                                Modifier
+                                    .defaultMinSize(minHeight = 225.dp)
+                            ) {
+                                items(uiState.topAnimes.data) {
+                                    Cards(
+                                        data = it,
+                                        title = it.title,
+                                        urlImage = it.images.jpg?.largeImageUrl.orEmpty(),
+                                        navigateToDetails = navigateToDetails
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    item {
+                        Column(Modifier.padding(8.dp)) {
+                            Text(
+                                text = "Top 10 Animes",
+                                style = MaterialTheme.typography.titleSmall,
+                                color = MaterialTheme.colorScheme.primary,
+                            )
+                            LazyRow(
+                                Modifier
+                                    .defaultMinSize(minHeight = 225.dp)
+                            ) {
+                                items(uiState.topAnimes.data) {
+                                    Cards(
+                                        data =it,
+                                        title = it.title,
+                                        urlImage = it.images.jpg?.largeImageUrl.orEmpty(),
+                                        navigateToDetails = navigateToDetails
+                                    )
+                                }
+                            }
+                        }
+                    }
 
+                }
+                if (isRefreshing) {
+                    LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                } else {
+                    LinearProgressIndicator(
+                        modifier = Modifier.fillMaxWidth(),
+                        progress = { stateRefreshState.distanceFraction }
+                    )
+                }
+                Button(onClick = {})
+                { Text(text = isRefreshing.toString()) }
+                Button(
+                    onClick = {  }) {
+                    Text(text = "Details")
+                }
+                Button(
+                    onClick = { }) {
+                    Text(text = "Details")
+                }
+            }
 
         }
     }
 }
-
-val test = listOf("1", "12","232","432")
