@@ -29,8 +29,22 @@ data class TopAnimeDataResponse(
     @SerializedName("source")
     val source: String? = null,
     @SerializedName("episodes")
-    val episodes: String? = null
-    ) : Parcelable
+    val episodes: String? = null,
+    @SerializedName("status")
+    val status: String? = null,
+    @SerializedName("aired")
+    val aired: AiredResponse? = null,
+    @SerializedName("duration")
+    val duration: String? = null,
+    @SerializedName("score")
+    val score: Double? = null,
+    @SerializedName("synopsis")
+    val synopsis: String? = null,
+    @SerializedName("year")
+    val year: String? = null,
+    @SerializedName("genres")
+    val genres: List<GenresResponse>? = null
+) : Parcelable
 
 @Parcelize
 data class TopAnimePaginationResponse(
@@ -48,6 +62,8 @@ data class ImagesResponse(
 
 @Parcelize
 data class ImageJpgResponse(
+    @SerializedName("image_url")
+    val imageUrl: String? = null,
     @SerializedName("large_image_url")
     val largeImageUrl: String? = null
 ) : Parcelable
@@ -58,4 +74,22 @@ data class TrailerResponse(
     val youtubeId: String? = null,
     @SerializedName("url")
     val url: String? = null
+) : Parcelable
+
+@Parcelize
+data class AiredResponse(
+    @SerializedName("from")
+    val from: String? = null,
+    @SerializedName("to")
+    val to: String? = null
+) : Parcelable
+
+@Parcelize
+data class GenresResponse(
+    @SerializedName("mal_id")
+    val malId: String? = null,
+    @SerializedName("type")
+    val type: String? = null,
+    @SerializedName("name")
+    val name: String? = null,
 ) : Parcelable
