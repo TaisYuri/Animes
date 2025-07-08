@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AnimeS"
 include(":app")
- 
+include(":core:uikit")
